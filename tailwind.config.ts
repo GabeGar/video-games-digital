@@ -11,6 +11,9 @@ export default {
             fontFamily: {
                 sans: ['Poppins', ...defaultTheme.fontFamily.sans],
             },
+            colors: {
+                'primary-purple': 'hsl(var(--primary-purple) /<alpha-value>)',
+            },
         },
     },
     plugins: [],

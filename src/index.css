@@ -4,6 +4,32 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+    :root {
+        --primary-purple: 226 35% 49%;
+    }
+
+    nav ul li a {
+        position: relative;
+    }
+
+    nav ul li a::before {
+        content: '';
+        position: absolute;
+        display: block;
+        width: 100%;
+        height: 2px;
+        bottom: -3px;
+        background-color: hsl(var(--primary-purple));
+        transform: scaleX(0);
+        transition: transform 150ms ease;
+    }
+
+    nav ul li a:hover::before {
+        transform: scaleX(1.1);
+    }
+}
+
 @layer components {
     /* https://dev.to/afif/i-made-100-css-loaders-for-your-next-project-4eje */
     .loader {
