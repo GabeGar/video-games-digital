@@ -24,7 +24,7 @@ const Header = () => {
             <div className="flex items-center sm:justify-between">
                 <Logo />
                 <form
-                    className="relative ml-auto sm:ml-0"
+                    className="group relative ml-auto sm:ml-0"
                     onSubmit={handleSubmit}
                 >
                     <button
@@ -45,7 +45,8 @@ const Header = () => {
                         <SearchIcon />
                     </button>
                     <input
-                        className="hidden h-12 rounded-lg bg-slate-100 text-center text-xl font-semibold tracking-wide text-primary-purple outline-none transition-all duration-150 placeholder:px-10 placeholder:text-slate-500/50 hover:outline-2 hover:outline-offset-0 hover:outline-primary-purple hover:placeholder:text-primary-purple focus:bg-slate-50 focus:ring-2 focus:ring-primary-purple focus:placeholder:text-primary-purple sm:block sm:w-[14rem] lg:w-[35rem] xl:w-[40rem]"
+                        className="hidden h-12 rounded-lg bg-slate-100 text-center text-xl font-semibold tracking-wide text-primary-purple outline-none transition-all duration-150 placeholder:px-10 placeholder:text-primary-purple/70 focus:bg-slate-50 focus:ring-2 focus:ring-primary-purple
+                        group-hover:outline-2 group-hover:outline-offset-0 group-hover:outline-primary-purple group-hover:placeholder:text-primary-purple/70 sm:block sm:w-[14rem] lg:w-[35rem] xl:w-[40rem]"
                         type="text"
                         name="Search"
                         placeholder="Search games"
