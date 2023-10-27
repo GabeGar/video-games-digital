@@ -24,20 +24,20 @@ const Footer = () => {
                             <Link to="store">Store</Link>
                         </li>
                         <li>
-                            <a href="/video-games-digital/About">About</a>
+                            <a href="#/video-games-digital/About">About</a>
                         </li>
                         <li>
-                            <a href="/video-games-digital/Careers">Careers</a>
+                            <a href="#/video-games-digital/Careers">Careers</a>
                         </li>
                         <li>
-                            <a href="/video-games-digital/Contact">
+                            <a href="#/video-games-digital/Contact">
                                 Contact Us
                             </a>
                         </li>
                     </ul>
                     <div className="text-end">
                         <p className="mt-3 text-sm md:mt-4">
-                            <span>© 2023 VideoGames Digital.</span>{' '}
+                            <span>© 2023 Video Games Digital.</span>{' '}
                             <span>All rights reversed.</span>
                         </p>
                     </div>
