@@ -20,8 +20,8 @@ const Header = () => {
     };
 
     return (
-        <header className="bg-slate-300 px-3 md:px-9">
-            <div className="flex items-center sm:justify-between">
+        <header className="bg-primary-light-purple px-3 md:px-9">
+            <div className="flex items-center py-3 sm:justify-between">
                 <Logo />
                 <form
                     className="group relative ml-auto sm:ml-0"
@@ -55,7 +55,7 @@ const Header = () => {
                 </form>
 
                 <div className="flex">
-                    <nav className="mr-3 hidden text-xl font-medium text-primary-purple sm:block md:mr-6">
+                    <nav className="mr-3 hidden text-xl font-semibold text-primary-purple sm:block md:mr-6">
                         <ul className="flex gap-3 md:gap-6">
                             <li>
                                 <Link to="/video-games-digital">Home</Link>
