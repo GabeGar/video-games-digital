@@ -17,10 +17,8 @@ export default {
                     'hsl(var(--primary-light-purple) /<alpha-value>)',
             },
             backgroundImage: {
-                gamingWallpaperDesktop:
-                    'url("/src/assets/gaming-wallpaper-desktop.jpg")',
-                gamingWallpaperMobile:
-                    'url("/src/assets/gaming-wallpaper-mobile.png")',
+                heroDesktop: 'url("/src/assets/gamer-zone-desktop.png")',
+                heroMobile: 'url("/src/assets/gamer-zone-mobile.png")',
             },
         },
     },
