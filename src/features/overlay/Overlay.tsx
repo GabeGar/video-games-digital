@@ -21,7 +21,7 @@ const Overlay = ({ children }: OverlayProps) => {
     }, [isOpen]);
 
     return (
-        <div className="absolute z-10 min-h-screen min-w-full bg-primary-purple/30 backdrop-blur-[2px]">
+        <div className="absolute z-10 min-h-screen min-w-full bg-primary-purple/20 backdrop-blur-[2px]">
             {children}
         </div>
     );

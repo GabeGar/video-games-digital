@@ -1,10 +1,11 @@
 import { Outlet, useLocation } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+
+import { getOverlayState } from '../features/overlay/overlaySlice';
 
 import Header from './Header';
 import Footer from './Footer';
 import MobileModalOverlay from '../features/overlay/MobileModalOverlay';
-import { useSelector } from 'react-redux';
-import { getOverlayState } from '../features/overlay/overlaySlice';
 
 const AppLayout = () => {
     const location = useLocation();

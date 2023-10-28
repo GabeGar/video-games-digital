@@ -1,4 +1,3 @@
-import { Link } from 'react-router-dom';
 import { createPortal } from 'react-dom';
 import { useDispatch } from 'react-redux';
 
@@ -7,11 +6,8 @@ import { closeOverlay } from './overlaySlice';
 import Overlay from './Overlay';
 import close from '../../assets/icon-close.svg';
 import Logo from '../../ui/Logo';
-import HomeIcon from '../../ui/icons/HomeIcon';
-import ShoppingBagIcon from '../../ui/ShoppingBagIcon';
-import AboutIcon from '../../ui/icons/AboutIcon';
-import CareersIcon from '../../ui/icons/CareersIcon';
-import ContactUsIcon from '../../ui/icons/ContactUsIcon';
+
+import CommonLinks from '../../ui/CommonLinks';
 
 const MobileModal = () => {
     const dispatch = useDispatch();
@@ -34,51 +30,7 @@ const MobileModal = () => {
                 </div>
                 <nav id="no-target">
                     <ul className="flex flex-col gap-3 pb-3 text-xl font-semibold text-primary-purple">
-                        <li>
-                            <Link
-                                className="flex items-center gap-2"
-                                to="/video-games-digital"
-                            >
-                                <HomeIcon />
-                                <span>Home</span>
-                            </Link>
-                        </li>
-                        <li>
-                            <Link
-                                className="flex items-center gap-2"
-                                to="/store"
-                            >
-                                <ShoppingBagIcon />
-                                <span>Store</span>
-                            </Link>
-                        </li>
-                        <li>
-                            <a
-                                className="flex items-center gap-2"
-                                href="#/video-games-digital/About"
-                            >
-                                <AboutIcon />
-                                <span>About</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a
-                                className="flex items-center gap-2"
-                                href="#/video-games-digital/Careers"
-                            >
-                                <CareersIcon />
-                                <span>Careers</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a
-                                className="flex items-center gap-2"
-                                href="#/video-games-digital/Contact"
-                            >
-                                <ContactUsIcon />
-                                <span>Contact Us</span>
-                            </a>
-                        </li>
+                        <CommonLinks />
                     </ul>
                 </nav>
             </div>

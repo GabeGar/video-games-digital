@@ -1,6 +1,5 @@
-import { Link } from 'react-router-dom';
-
 import Logo from './Logo';
+import CommonLinks from './CommonLinks';
 
 const Footer = () => {
     return (
@@ -17,23 +16,7 @@ const Footer = () => {
                 </div>
                 <div className="gap-6 md:flex  md:flex-col md:gap-8">
                     <ul className="flex flex-col items-center gap-3 md:flex-row">
-                        <li>
-                            <Link to="/video-games-digital">Home</Link>
-                        </li>
-                        <li>
-                            <Link to="store">Store</Link>
-                        </li>
-                        <li>
-                            <a href="#/video-games-digital/About">About</a>
-                        </li>
-                        <li>
-                            <a href="#/video-games-digital/Careers">Careers</a>
-                        </li>
-                        <li>
-                            <a href="#/video-games-digital/Contact">
-                                Contact Us
-                            </a>
-                        </li>
+                        <CommonLinks />
                     </ul>
                     <div className="text-end">
                         <p className="mt-3 text-sm md:mt-4">
