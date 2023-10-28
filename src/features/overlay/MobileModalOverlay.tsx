@@ -1,7 +1,7 @@
 import { createPortal } from 'react-dom';
 import { useDispatch } from 'react-redux';
 
-import { closeOverlay } from './overlaySlice';
+import { closeMobileMenuOverlay } from './mobileMenuOverlaySlice';
 
 import Overlay from './Overlay';
 import close from '../../assets/icon-close.svg';
@@ -12,8 +12,8 @@ import CommonLinks from '../../ui/CommonLinks';
 const MobileModal = () => {
     const dispatch = useDispatch();
 
-    const handleCloseOverlay = () => {
-        dispatch(closeOverlay());
+    const handleCloseMobileMenuOverlay = () => {
+        dispatch(closeMobileMenuOverlay());
     };
 
     return (
@@ -21,7 +21,7 @@ const MobileModal = () => {
             <div className="flex min-h-min flex-1 flex-col bg-slate-100 px-4 py-6 uppercase">
                 <div className="flex justify-between pb-6">
                     <Logo />
-                    <button className="" onClick={handleCloseOverlay}>
+                    <button className="" onClick={handleCloseMobileMenuOverlay}>
                         <img
                             className="h-6 w-6 brightness-0"
                             src={close}

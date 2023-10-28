@@ -2,9 +2,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link, useMatch } from 'react-router-dom';
 
 import {
-    closeOverlay,
-    getOverlayState,
-} from '../features/overlay/overlaySlice';
+    closeMobileMenuOverlay,
+    getMobileMenuOverlayState,
+} from '../features/overlay/mobileMenuOverlaySlice';
 import { APP_PATHS } from '../common/paths';
 
 import HomeIcon from './icons/HomeIcon';
@@ -16,11 +16,11 @@ import ContactUsIcon from './icons/ContactUsIcon';
 const CommonLinks = () => {
     const dispatch = useDispatch();
     const isOnBaseURL = useMatch(APP_PATHS.BASE);
-    const isMobileOverlayOpen = useSelector(getOverlayState);
-    const shouldRenderExtraLinks = isOnBaseURL ?? isMobileOverlayOpen;
+    const isMobileMenuOverlayOpen = useSelector(getMobileMenuOverlayState);
+    const shouldRenderExtraLinks = isOnBaseURL ?? isMobileMenuOverlayOpen;
 
     const handleCloseOverlay = () => {
-        dispatch(closeOverlay());
+        dispatch(closeMobileMenuOverlay());
     };
 
     return (
@@ -30,10 +30,11 @@ const CommonLinks = () => {
                     className="flex items-center gap-2"
                     to={APP_PATHS.BASE}
                     onClick={() => {
-                        if (isMobileOverlayOpen) dispatch(closeOverlay());
+                        if (isMobileMenuOverlayOpen)
+                            dispatch(closeMobileMenuOverlay());
                     }}
                 >
-                    {isMobileOverlayOpen && <HomeIcon />}
+                    {isMobileMenuOverlayOpen && <HomeIcon />}
                     <span>Home</span>
                 </Link>
             </li>
@@ -42,10 +43,11 @@ const CommonLinks = () => {
                     className="flex items-center gap-2"
                     to={APP_PATHS.STORE}
                     onClick={() => {
-                        if (isMobileOverlayOpen) dispatch(closeOverlay());
+                        if (isMobileMenuOverlayOpen)
+                            dispatch(closeMobileMenuOverlay());
                     }}
                 >
-                    {isMobileOverlayOpen && <ShoppingBagIcon />}
+                    {isMobileMenuOverlayOpen && <ShoppingBagIcon />}
                     <span>Store</span>
                 </Link>
             </li>
@@ -58,7 +60,7 @@ const CommonLinks = () => {
                             href="#/video-games-digital/About"
                             onClick={handleCloseOverlay}
                         >
-                            {isMobileOverlayOpen && <AboutIcon />}
+                            {isMobileMenuOverlayOpen && <AboutIcon />}
                             <span>About</span>
                         </a>
                     </li>
@@ -68,7 +70,7 @@ const CommonLinks = () => {
                             href="#/video-games-digital/Careers"
                             onClick={handleCloseOverlay}
                         >
-                            {isMobileOverlayOpen && <CareersIcon />}
+                            {isMobileMenuOverlayOpen && <CareersIcon />}
                             <span>Careers</span>
                         </a>
                     </li>
@@ -78,7 +80,7 @@ const CommonLinks = () => {
                             href="#/video-games-digital/Contact"
                             onClick={handleCloseOverlay}
                         >
-                            {isMobileOverlayOpen && <ContactUsIcon />}
+                            {isMobileMenuOverlayOpen && <ContactUsIcon />}
                             <span>Contact Us</span>
                         </a>
                     </li>

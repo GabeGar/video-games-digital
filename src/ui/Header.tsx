@@ -2,7 +2,7 @@ import { Link, useMatch } from 'react-router-dom';
 import { useRef } from 'react';
 import { useDispatch } from 'react-redux';
 
-import { openOverlay } from '../features/overlay/overlaySlice';
+import { openMobileMenuOverlay } from '../features/overlay/mobileMenuOverlaySlice';
 
 import { APP_PATHS } from '../common/paths';
 
@@ -19,12 +19,12 @@ const Header = () => {
 
     // TODO 1: Fetch queried games, while user types characters in search field.
 
-    const handleSearchOverlayClick = () => {
+    const handleOpenSearchOverlayClick = () => {
         // TODO 3: Open an overlay that allows the user to fetch a query for games they type in the form field.
     };
 
-    const handleOpenMobileOverlayClick = () => {
-        dispatch(openOverlay());
+    const handleOpenMobileMenuOverlayClick = () => {
+        dispatch(openMobileMenuOverlay());
     };
 
     const handleSubmit = (e: React.FormEvent) => {
@@ -43,7 +43,7 @@ const Header = () => {
                     >
                         <button
                             className="flex sm:absolute sm:left-2 sm:top-[.6rem]"
-                            onClick={handleSearchOverlayClick}
+                            onClick={handleOpenSearchOverlayClick}
                         >
                             <SearchIcon />
                         </button>
@@ -75,7 +75,7 @@ const Header = () => {
                     )}
 
                     <button
-                        onClick={handleOpenMobileOverlayClick}
+                        onClick={handleOpenMobileMenuOverlayClick}
                         className="sm:hidden"
                     >
                         <HamburgerMenuIcon />

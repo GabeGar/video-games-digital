@@ -1,7 +1,10 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { closeOverlay, getOverlayState } from './overlaySlice';
+import {
+    closeMobileMenuOverlay,
+    getMobileMenuOverlayState,
+} from './mobileMenuOverlaySlice';
 
 interface OverlayProps {
     children: React.ReactNode;
@@ -9,11 +12,12 @@ interface OverlayProps {
 
 const Overlay = ({ children }: OverlayProps) => {
     const dispatch = useDispatch();
-    const isOpen = useSelector(getOverlayState);
+    const isOpen = useSelector(getMobileMenuOverlayState);
 
     useEffect(() => {
         const handleResize = () => {
-            if (isOpen && window.innerWidth >= 640) dispatch(closeOverlay());
+            if (isOpen && window.innerWidth >= 640)
+                dispatch(closeMobileMenuOverlay());
         };
 
         window.addEventListener('resize', handleResize);

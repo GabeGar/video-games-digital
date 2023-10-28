@@ -1,7 +1,7 @@
 import { Outlet, useLocation } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
-import { getOverlayState } from '../features/overlay/overlaySlice';
+import { getMobileMenuOverlayState } from '../features/overlay/mobileMenuOverlaySlice';
 import { APP_PATHS } from '../common/paths';
 
 import Header from './Header';
@@ -10,11 +10,11 @@ import MobileModalOverlay from '../features/overlay/MobileModalOverlay';
 
 const AppLayout = () => {
     const location = useLocation();
-    const isOpen = useSelector(getOverlayState);
+    const isMobileMenuOpen = useSelector(getMobileMenuOverlayState);
 
     return (
         <div className="min-h-[100dvh] bg-slate-100">
-            {isOpen && <MobileModalOverlay />}
+            {isMobileMenuOpen && <MobileModalOverlay />}
 
             <Header />
 
