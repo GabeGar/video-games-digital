@@ -4,6 +4,7 @@ import {
     closeOverlay,
     getOverlayState,
 } from '../features/overlay/overlaySlice';
+import { APP_PATHS } from '../common/paths';
 
 const Logo = () => {
     const location = useLocation();
@@ -18,7 +19,7 @@ const Logo = () => {
     return (
         <Link
             className="font-semibold uppercase tracking-widest transition-transform hover:scale-105"
-            to="/video-games-digital"
+            to={APP_PATHS.BASE}
             onClick={handleCloseOverlay}
         >
             <div className="flex flex-col items-center rounded border-2 border-primary-purple p-2 text-xl text-primary-purple">

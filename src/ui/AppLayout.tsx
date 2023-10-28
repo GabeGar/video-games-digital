@@ -2,6 +2,7 @@ import { Outlet, useLocation } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 import { getOverlayState } from '../features/overlay/overlaySlice';
+import { APP_PATHS } from '../common/paths';
 
 import Header from './Header';
 import Footer from './Footer';
@@ -21,7 +22,7 @@ const AppLayout = () => {
                 <Outlet />
             </main>
 
-            {location.pathname === '/video-games-digital' && <Footer />}
+            {location.pathname === APP_PATHS.BASE && <Footer />}
         </div>
     );
 };

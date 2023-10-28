@@ -1,14 +1,27 @@
 import { useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
-import { getOverlayState } from './overlaySlice';
+import { closeOverlay, getOverlayState } from './overlaySlice';
 
 interface OverlayProps {
     children: React.ReactNode;
 }
 
 const Overlay = ({ children }: OverlayProps) => {
+    const dispatch = useDispatch();
     const isOpen = useSelector(getOverlayState);
+
+    useEffect(() => {
+        const handleResize = () => {
+            if (isOpen && window.innerWidth >= 640) dispatch(closeOverlay());
+        };
+
+        window.addEventListener('resize', handleResize);
+
+        return () => {
+            window.removeEventListener('resize', handleResize);
+        };
+    }, [isOpen, dispatch]);
 
     useEffect(() => {
         const html = document.querySelector('html') as HTMLElement;
