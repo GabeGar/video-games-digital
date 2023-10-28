@@ -18,9 +18,9 @@ export default {
             },
             backgroundImage: {
                 gamingWallpaperDesktop:
-                    'url("src/assets/gaming-wallpaper-desktop.jpg")',
+                    'url("/src/assets/gaming-wallpaper-desktop.jpg")',
                 gamingWallpaperMobile:
-                    'url("src/assets/gaming-wallpaper-mobile.png")',
+                    'url("/src/assets/gaming-wallpaper-mobile.png")',
             },
         },
     },
