@@ -1,15 +1,23 @@
 import { Link } from 'react-router-dom';
 import { useRef } from 'react';
+import { useDispatch } from 'react-redux';
+
+import { openOverlay } from '../features/overlay/overlaySlice';
 
 import Logo from './Logo';
 import ShoppingCartIcon from './ShoppingCartIcon';
 import HamburgerMenuIcon from './HamburgerMenuIcon';
-import SearchIcon from './SearchIcon';
+import SearchIcon from './icons/SearchIcon';
 
 const Header = () => {
+    const dispatch = useDispatch();
     const inputRef = useRef<HTMLInputElement | null>(null);
 
     // TODO 1: Fetch queried games, while user types characters in search field.
+
+    const handleOpenOverlay = () => {
+        dispatch(openOverlay());
+    };
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
@@ -73,7 +81,7 @@ const Header = () => {
                         <ShoppingCartIcon />
                     </Link>
 
-                    <button className="sm:hidden">
+                    <button onClick={handleOpenOverlay} className="sm:hidden">
                         <HamburgerMenuIcon />
                     </button>
                 </div>
