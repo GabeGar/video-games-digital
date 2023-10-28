@@ -15,6 +15,7 @@ const MobileModal = () => {
     const handleCloseOverlay = () => {
         dispatch(closeOverlay());
     };
+
     return (
         <Overlay>
             <div className="flex min-h-min flex-1 flex-col bg-slate-100 px-4 py-6 uppercase">
@@ -24,7 +25,7 @@ const MobileModal = () => {
                         <img
                             className="h-6 w-6 brightness-0"
                             src={close}
-                            alt=""
+                            alt="Close menu icon"
                         />
                     </button>
                 </div>

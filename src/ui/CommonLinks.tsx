@@ -1,7 +1,10 @@
-import { useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link, useLocation } from 'react-router-dom';
 
-import { getOverlayState } from '../features/overlay/overlaySlice';
+import {
+    closeOverlay,
+    getOverlayState,
+} from '../features/overlay/overlaySlice';
 
 import HomeIcon from './icons/HomeIcon';
 import ShoppingBagIcon from './ShoppingBagIcon';
@@ -10,7 +13,13 @@ import CareersIcon from './icons/CareersIcon';
 import ContactUsIcon from './icons/ContactUsIcon';
 
 const CommonLinks = () => {
+    const dispatch = useDispatch();
+    const location = useLocation();
     const isOpen = useSelector(getOverlayState);
+
+    const handleCloseOverlay = () => {
+        dispatch(closeOverlay());
+    };
 
     return (
         <>
@@ -18,13 +27,20 @@ const CommonLinks = () => {
                 <Link
                     className="flex items-center gap-2"
                     to="/video-games-digital"
+                    onClick={() => {
+                        if (
+                            isOpen &&
+                            location.pathname === '/video-games-digital'
+                        )
+                            dispatch(closeOverlay());
+                    }}
                 >
                     {isOpen && <HomeIcon />}
                     <span>Home</span>
                 </Link>
             </li>
             <li>
-                <Link className="flex items-center gap-2" to="/store">
+                <Link className="flex items-center gap-2" to="store">
                     {isOpen && <ShoppingBagIcon />}
                     <span>Store</span>
                 </Link>
@@ -33,6 +49,7 @@ const CommonLinks = () => {
                 <a
                     className="flex items-center gap-2"
                     href="#/video-games-digital/About"
+                    onClick={handleCloseOverlay}
                 >
                     {isOpen && <AboutIcon />}
                     <span>About</span>
@@ -42,6 +59,7 @@ const CommonLinks = () => {
                 <a
                     className="flex items-center gap-2"
                     href="#/video-games-digital/Careers"
+                    onClick={handleCloseOverlay}
                 >
                     {isOpen && <CareersIcon />}
                     <span>Careers</span>
@@ -51,6 +69,7 @@ const CommonLinks = () => {
                 <a
                     className="flex items-center gap-2"
                     href="#/video-games-digital/Contact"
+                    onClick={handleCloseOverlay}
                 >
                     {isOpen && <ContactUsIcon />}
                     <span>Contact Us</span>
