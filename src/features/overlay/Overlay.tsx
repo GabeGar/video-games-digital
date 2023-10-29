@@ -4,7 +4,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import {
     closeMobileMenuOverlay,
     getMobileMenuOverlayState,
-} from './mobileMenuOverlaySlice';
+} from './MobileModalOverlay/mobileMenuOverlaySlice';
+import { getSearchMenuOverlayState } from './SearchMenuOverlay/searchMenuOverlaySlice';
 
 interface OverlayProps {
     children: React.ReactNode;
@@ -12,11 +13,12 @@ interface OverlayProps {
 
 const Overlay = ({ children }: OverlayProps) => {
     const dispatch = useDispatch();
-    const isOpen = useSelector(getMobileMenuOverlayState);
+    const isMobileMenuOpen = useSelector(getMobileMenuOverlayState);
+    const isSearchMenuOpen = useSelector(getSearchMenuOverlayState);
 
     useEffect(() => {
         const handleResize = () => {
-            if (isOpen && window.innerWidth >= 640)
+            if (isMobileMenuOpen && window.innerWidth >= 640)
                 dispatch(closeMobileMenuOverlay());
         };
 
@@ -25,20 +27,21 @@ const Overlay = ({ children }: OverlayProps) => {
         return () => {
             window.removeEventListener('resize', handleResize);
         };
-    }, [isOpen, dispatch]);
+    }, [isMobileMenuOpen, dispatch]);
 
     useEffect(() => {
         const html = document.querySelector('html') as HTMLElement;
 
-        html.style.overflow = isOpen ? 'hidden' : '';
+        html.style.overflow =
+            isMobileMenuOpen || isSearchMenuOpen ? 'hidden' : '';
 
         return () => {
             html.style.overflow = '';
         };
-    }, [isOpen]);
+    }, [isMobileMenuOpen, isSearchMenuOpen]);
 
     return (
-        <div className="absolute z-10 min-h-screen min-w-full bg-primary-purple/20 backdrop-blur-[2px]">
+        <div className="absolute z-50 min-h-screen min-w-full bg-primary-purple/20 backdrop-blur-[2px]">
             {children}
         </div>
     );

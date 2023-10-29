@@ -3,7 +3,7 @@ import { Link, useLocation } from 'react-router-dom';
 import {
     closeMobileMenuOverlay,
     getMobileMenuOverlayState,
-} from '../features/overlay/mobileMenuOverlaySlice';
+} from '../features/overlay/MobileModalOverlay/mobileMenuOverlaySlice';
 import { APP_PATHS } from '../common/paths';
 
 const Logo = () => {
