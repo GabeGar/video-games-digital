@@ -21,7 +21,10 @@ const MobileModal = () => {
             <div className="flex min-h-min flex-1 flex-col bg-slate-100 px-4 py-6 uppercase">
                 <div className="flex justify-between pb-6">
                     <Logo />
-                    <button onClick={handleCloseMobileMenuOverlay}>
+                    <button
+                        className="self-center rounded-full bg-slate-300 p-3"
+                        onClick={handleCloseMobileMenuOverlay}
+                    >
                         <img
                             className="h-6 w-6"
                             src={close}
