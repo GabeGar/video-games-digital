@@ -20,6 +20,10 @@ export default {
                 heroDesktop: 'url("/src/assets/gamer-zone-desktop.png")',
                 heroMobile: 'url("/src/assets/gamer-zone-mobile.png")',
             },
+            gridTemplateColumns: {
+                gamesGrid: 'repeat(auto-fit, minmax(250px, 1fr))',
+                storeLayoutGrid: '1fr 4fr',
+            },
         },
     },
     plugins: [],
