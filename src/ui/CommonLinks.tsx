@@ -1,6 +1,6 @@
-import { useDispatch, useSelector } from 'react-redux';
 import { Link, useMatch } from 'react-router-dom';
 
+import { useAppDispatch, useAppSelector } from '../hooks/app-hooks';
 import {
     closeMobileMenuOverlay,
     getMobileMenuOverlayState,
@@ -12,12 +12,23 @@ import ShoppingBagIcon from './icons/ShoppingBagIcon';
 import AboutIcon from './icons/AboutIcon';
 import CareersIcon from './icons/CareersIcon';
 import ContactUsIcon from './icons/ContactUsIcon';
+import { fetchGames } from '../services/apiRawg';
 
 const CommonLinks = () => {
-    const dispatch = useDispatch();
+    const dispatch = useAppDispatch();
     const isOnBaseURL = useMatch(APP_PATHS.BASE);
-    const isMobileMenuOverlayOpen = useSelector(getMobileMenuOverlayState);
+    const isMobileMenuOverlayOpen = useAppSelector(getMobileMenuOverlayState);
     const shouldRenderExtraLinks = isOnBaseURL ?? isMobileMenuOverlayOpen;
+
+    const handleStoreLinkClick = () => {
+        if (isMobileMenuOverlayOpen) {
+            dispatch(closeMobileMenuOverlay());
+        }
+
+        void (async () => {
+            await dispatch(fetchGames());
+        })();
+    };
 
     const handleCloseOverlay = () => {
         dispatch(closeMobileMenuOverlay());
@@ -42,10 +53,7 @@ const CommonLinks = () => {
                 <Link
                     className="flex items-center gap-2"
                     to={APP_PATHS.STORE}
-                    onClick={() => {
-                        if (isMobileMenuOverlayOpen)
-                            dispatch(closeMobileMenuOverlay());
-                    }}
+                    onClick={handleStoreLinkClick}
                 >
                     {isMobileMenuOverlayOpen && <ShoppingBagIcon />}
                     <span>Store</span>
