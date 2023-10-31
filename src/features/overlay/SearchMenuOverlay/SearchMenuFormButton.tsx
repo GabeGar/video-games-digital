@@ -1,5 +1,3 @@
-import { useDispatch, useSelector } from 'react-redux';
-
 import {
     closeSearchMenuOverlay,
     getSearchMenuOverlayState,
@@ -8,13 +6,14 @@ import {
 
 import SearchIcon from '../../../ui/icons/SearchIcon';
 import close from '../../../assets/icon-close.svg';
+import { useAppDispatch, useAppSelector } from '../../../hooks/app-hooks';
 
 const BASE_INPUT_STYLES =
     'h-12 rounded-lg bg-slate-100 text-center text-[calc(.75rem+1dvw)] sm:text-xl font-semibold tracking-wide text-primary-purple outline-none transition-all duration-150 placeholder:px-10 placeholder:text-primary-purple/70 focus:bg-slate-50 focus:ring-2 focus:ring-primary-purple group-hover:outline-2 group-hover:outline-offset-0 group-hover:outline-primary-purple group-hover:placeholder:text-primary-purple/70 sm:block sm:w-[15rem] lg:w-[35rem] xl:w-[50rem]';
 
 const SearchMenuFormButton = () => {
-    const dispatch = useDispatch();
-    const isSearchMenuOpen = useSelector(getSearchMenuOverlayState);
+    const dispatch = useAppDispatch();
+    const isSearchMenuOpen = useAppSelector(getSearchMenuOverlayState);
 
     const handleOpenSearchOverlayClick = () => {
         // TODO 3: Open an overlay that allows the user to fetch a query for games they type in the form field.

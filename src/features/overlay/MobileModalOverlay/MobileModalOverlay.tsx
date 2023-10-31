@@ -1,7 +1,7 @@
 import { createPortal } from 'react-dom';
-import { useDispatch } from 'react-redux';
 
 import { closeMobileMenuOverlay } from './mobileMenuOverlaySlice';
+import { useAppDispatch } from '../../../hooks/app-hooks';
 
 import Overlay from '../Overlay';
 import close from '../../../assets/icon-close.svg';
@@ -10,7 +10,7 @@ import Logo from '../../../ui/Logo';
 import CommonLinks from '../../../ui/CommonLinks';
 
 const MobileModal = () => {
-    const dispatch = useDispatch();
+    const dispatch = useAppDispatch();
 
     const handleCloseMobileMenuOverlay = () => {
         dispatch(closeMobileMenuOverlay());
