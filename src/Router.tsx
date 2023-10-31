@@ -1,10 +1,9 @@
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 
 import { APP_PATHS } from './common/paths';
-
+import StoreLayout from './features/store/StoreLayout';
 import AppLayout from './ui/AppLayout';
 import Home from './ui/Home';
-import Store from './features/store/Store';
 
 const Router = (): React.ReactElement => {
     const router = createBrowserRouter([
@@ -18,7 +17,7 @@ const Router = (): React.ReactElement => {
                 },
                 {
                     path: APP_PATHS.STORE,
-                    element: <Store />,
+                    element: <StoreLayout />,
                 },
             ],
         },
