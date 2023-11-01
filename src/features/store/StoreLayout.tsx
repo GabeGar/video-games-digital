@@ -1,23 +1,10 @@
-import { useEffect } from 'react';
-
-import { useAppDispatch } from '../../hooks/app-hooks';
-import { fetchGames } from '../../services/apiRawg';
-import Genres from './Genres';
 import Games from './Games';
+import GameGenres from './GameGenres';
 
 const StoreLayout = () => {
-    const dispatch = useAppDispatch();
-
-    useEffect(() => {
-        // Top-level func return promise handled with a void operator as that promise will never be used. (no-floating-promises)
-        void (async () => {
-            await dispatch(fetchGames());
-        })();
-    }, [dispatch]);
-
     return (
-        <div className="lg:grid-cols-storeLayoutGrid grid p-3 lg:px-9">
-            <Genres />
+        <div className="grid p-3 lg:grid-cols-storeLayoutGrid lg:px-9">
+            <GameGenres />
             <Games />
         </div>
     );

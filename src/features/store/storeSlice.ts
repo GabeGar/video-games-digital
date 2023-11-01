@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 import { fetchGames, fetchGamesByGenre } from '../../services/apiRawg';
 import { GamesOverview } from '../../types/GamesInterface';
@@ -13,7 +13,7 @@ interface RootState {
 
 const initialState: RootState = {
     games: [],
-    selectedGenre: null,
+    selectedGenre: 'top',
     status: 'idle',
     error: '',
 };
@@ -30,9 +30,12 @@ const storeSlice = createSlice({
                 };
             });
         },
+        setSelectedGenre(state, action: PayloadAction<string>) {
+            state.selectedGenre = action.payload;
+        },
     },
     extraReducers: (builder) => {
-        // Newly Released Games
+        // Default Top Games
         builder
             .addCase(fetchGames.pending, (state) => {
                 state.status = 'loading';
@@ -64,3 +67,4 @@ const storeSlice = createSlice({
 });
 
 export default storeSlice.reducer;
+export const { setSelectedGenre } = storeSlice.actions;

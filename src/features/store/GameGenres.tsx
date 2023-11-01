@@ -1,26 +1,25 @@
-import { useSearchParams } from 'react-router-dom';
+import { useEffect } from 'react';
 
-import { useAppDispatch } from '../../hooks/app-hooks';
+import { useAppDispatch, useAppSelector } from '../../hooks/app-hooks';
 import { fetchGames, fetchGamesByGenre } from '../../services/apiRawg';
 import { sortedGenresData } from '../../common/genresData';
+import { setSelectedGenre } from './storeSlice';
 
-const Genres = () => {
+const GameGenres = () => {
     const dispatch = useAppDispatch();
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const [searchParams, setSearchParams] = useSearchParams();
+    const currentGenre = useAppSelector((state) => state.store.selectedGenre);
+
+    useEffect(() => {
+        void (async () => {
+            await dispatch(fetchGames());
+        })();
+    }, [dispatch]);
 
     const handleGenreClick = (genre: string) => {
-        if (genre === 'top') {
-            setSearchParams('');
-            void (async () => {
-                await dispatch(fetchGames());
-            })();
-            return;
-        }
-
-        setSearchParams(`genres=${genre}`);
+        if (currentGenre === genre) return;
 
         void (async () => {
+            dispatch(setSelectedGenre(genre));
             await dispatch(fetchGamesByGenre(genre));
         })();
     };
@@ -33,7 +32,11 @@ const Genres = () => {
             {sortedGenresData.map((genre) => (
                 <button
                     key={genre.id}
-                    className="min-w-max rounded-lg bg-primary-purple px-2 py-1 font-bold text-slate-50 lg:min-w-min"
+                    className={`${
+                        currentGenre === genre.genre
+                            ? 'border-2 border-primary-purple bg-slate-100'
+                            : 'bg-primary-purple text-slate-50'
+                    } min-w-max rounded-lg px-2 py-1 font-bold lg:min-w-min`}
                     onClick={() => {
                         handleGenreClick(genre.genre);
                     }}
@@ -45,4 +48,4 @@ const Genres = () => {
     );
 };
 
-export default Genres;
+export default GameGenres;

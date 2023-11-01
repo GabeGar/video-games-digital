@@ -1,13 +1,13 @@
-import { Link, useSearchParams } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import { useAppSelector } from '../../hooks/app-hooks';
 import Loader from '../../ui/Loader';
 
 const Games = () => {
-    const { status, error, games } = useAppSelector((state) => state.store);
+    const { status, error, games, selectedGenre } = useAppSelector(
+        (state) => state.store,
+    );
     console.log(games);
-    const [searchParams] = useSearchParams();
-    const genre = searchParams.get('genres');
 
     if (status === 'loading') return <Loader />;
     if (status === 'fail') return <p>{error}</p>;
@@ -15,7 +15,7 @@ const Games = () => {
     return (
         <section className="space-y-2 overflow-y-scroll">
             <h1 className="text-3xl font-bold text-primary-purple">
-                {genre ? genre.toUpperCase() : 'Top Releases'}
+                {selectedGenre?.toUpperCase()}
             </h1>
             <ul className="grid grid-cols-gamesGrid gap-2">
                 {games.map((game) => {
