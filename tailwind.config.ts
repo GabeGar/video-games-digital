@@ -21,7 +21,7 @@ export default {
                 heroMobile: 'url("/src/assets/gamer-zone-mobile.png")',
             },
             gridTemplateColumns: {
-                gamesGrid: 'repeat(auto-fit, minmax(250px, 1fr))',
+                gamesGrid: 'repeat(auto-fit, minmax(300px, 1fr))',
                 storeLayoutGrid: '1fr 4fr',
             },
         },

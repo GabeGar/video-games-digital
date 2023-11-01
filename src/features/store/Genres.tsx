@@ -33,7 +33,7 @@ const Genres = () => {
             {sortedGenresData.map((genre) => (
                 <button
                     key={genre.id}
-                    className="rounded-lg bg-primary-purple px-2 py-1 font-bold text-slate-50"
+                    className="min-w-max rounded-lg bg-primary-purple px-2 py-1 font-bold text-slate-50 lg:min-w-min"
                     onClick={() => {
                         handleGenreClick(genre.genre);
                     }}

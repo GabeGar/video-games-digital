@@ -17,7 +17,7 @@ const Games = () => {
             <h1 className="text-3xl font-bold text-primary-purple">
                 {genre ? genre.toUpperCase() : 'Top Releases'}
             </h1>
-            <ul className="grid-cols-gamesGrid grid gap-2">
+            <ul className="grid grid-cols-gamesGrid gap-2">
                 {games.map((game) => {
                     if (!game.background_image) return;
 
