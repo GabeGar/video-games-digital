@@ -16,7 +16,18 @@ const GameGenres = () => {
     }, [dispatch]);
 
     const handleGenreClick = (genre: string) => {
+        // prevent a wasteful re-fetch of the currently displayed games genre.
         if (currentGenre === genre) return;
+
+        // 'top' as a genre does not actually exist in the rawg api.
+        // Must re-fetch using the fetchGames func.
+        if (genre === 'top') {
+            void (async () => {
+                dispatch(setSelectedGenre(genre));
+                await dispatch(fetchGames());
+            })();
+            return;
+        }
 
         void (async () => {
             dispatch(setSelectedGenre(genre));
