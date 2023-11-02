@@ -1,19 +1,21 @@
 import {
     closeSearchMenuOverlay,
-    getSearchMenuOverlayState,
     openSearchMenuOverlay,
 } from './searchMenuOverlaySlice';
 
+import { useAppDispatch, useAppSelector } from '../../../hooks/app-hooks';
 import SearchIcon from '../../../ui/icons/SearchIcon';
 import close from '../../../assets/icon-close.svg';
-import { useAppDispatch, useAppSelector } from '../../../hooks/app-hooks';
+import SearchMenuGames from './SearchMenuGames';
 
 const BASE_INPUT_STYLES =
     'h-12 rounded-lg bg-slate-100 text-center text-[calc(.75rem+1dvw)] sm:text-xl font-semibold tracking-wide text-primary-purple outline-none transition-all duration-150 placeholder:px-10 placeholder:text-primary-purple/70 focus:bg-slate-50 focus:ring-2 focus:ring-primary-purple group-hover:outline-2 group-hover:outline-offset-0 group-hover:outline-primary-purple group-hover:placeholder:text-primary-purple/70 sm:block lg:w-[35rem] xl:w-[50rem] sm:w-[15rem]';
 
 const SearchMenuFormButton = () => {
     const dispatch = useAppDispatch();
-    const isSearchMenuOpen = useAppSelector(getSearchMenuOverlayState);
+    const isSearchMenuOpen = useAppSelector(
+        (state) => state.searchMenuOverlay.isSearchMenuOpen,
+    );
 
     const handleOpenSearchOverlayClick = () => {
         dispatch(openSearchMenuOverlay());
@@ -58,6 +60,8 @@ const SearchMenuFormButton = () => {
                         />
                     </button>
                 </form>
+
+                <SearchMenuGames />
             </>
         );
     }

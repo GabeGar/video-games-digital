@@ -1,12 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 interface RootState {
-    mobileMenuOverlay: {
-        isMobileMenuOpen: boolean;
-    };
+    isMobileMenuOpen: boolean;
 }
 
-const initialState = {
+const initialState: RootState = {
     isMobileMenuOpen: false,
 };
 
@@ -26,6 +24,3 @@ const mobileMenuOverlaySlice = createSlice({
 export default mobileMenuOverlaySlice.reducer;
 export const { openMobileMenuOverlay, closeMobileMenuOverlay } =
     mobileMenuOverlaySlice.actions;
-
-export const getMobileMenuOverlayState = (state: RootState): boolean =>
-    state.mobileMenuOverlay.isMobileMenuOpen;

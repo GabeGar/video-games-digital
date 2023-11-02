@@ -1,10 +1,7 @@
 import { Link, useMatch } from 'react-router-dom';
 
 import { useAppDispatch, useAppSelector } from '../hooks/app-hooks';
-import {
-    closeMobileMenuOverlay,
-    getMobileMenuOverlayState,
-} from '../features/overlay/MobileModalOverlay/mobileMenuOverlaySlice';
+import { closeMobileMenuOverlay } from '../features/overlay/MobileModalOverlay/mobileMenuOverlaySlice';
 import { APP_PATHS } from '../common/paths';
 
 import HomeIcon from './icons/HomeIcon';
@@ -17,7 +14,9 @@ import { fetchGames } from '../services/apiRawg';
 const CommonLinks = () => {
     const dispatch = useAppDispatch();
     const isOnBaseURL = useMatch(APP_PATHS.BASE);
-    const isMobileMenuOverlayOpen = useAppSelector(getMobileMenuOverlayState);
+    const isMobileMenuOverlayOpen = useAppSelector(
+        (state) => state.mobileMenuOverlay.isMobileMenuOpen,
+    );
     const shouldRenderExtraLinks = isOnBaseURL ?? isMobileMenuOverlayOpen;
 
     const handleStoreLinkClick = () => {

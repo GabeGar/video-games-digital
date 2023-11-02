@@ -1,21 +1,20 @@
 import { Link, useMatch } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
 
 import { openMobileMenuOverlay } from '../features/overlay/MobileModalOverlay/mobileMenuOverlaySlice';
-
 import { APP_PATHS } from '../common/paths';
-
+import { useAppDispatch, useAppSelector } from '../hooks/app-hooks';
 import Logo from './Logo';
 import ShoppingCartIcon from './icons/ShoppingCartIcon';
 import HamburgerMenuIcon from './HamburgerMenuIcon';
 import CommonLinks from './CommonLinks';
 import SearchMenuFormButton from '../features/overlay/SearchMenuOverlay/SearchMenuFormButton';
-import { getSearchMenuOverlayState } from '../features/overlay/SearchMenuOverlay/searchMenuOverlaySlice';
 
 const Header = () => {
-    const dispatch = useDispatch();
+    const dispatch = useAppDispatch();
     const isOnBaseURL = useMatch(APP_PATHS.BASE);
-    const isSearchMenuOpen = useSelector(getSearchMenuOverlayState);
+    const isSearchMenuOpen = useAppSelector(
+        (state) => state.searchMenuOverlay.isSearchMenuOpen,
+    );
 
     const handleOpenMobileMenuOverlayClick = () => {
         dispatch(openMobileMenuOverlay());

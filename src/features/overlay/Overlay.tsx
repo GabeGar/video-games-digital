@@ -1,11 +1,7 @@
 import { useEffect } from 'react';
 
-import {
-    closeMobileMenuOverlay,
-    getMobileMenuOverlayState,
-} from './MobileModalOverlay/mobileMenuOverlaySlice';
-import { getSearchMenuOverlayState } from './SearchMenuOverlay/searchMenuOverlaySlice';
 import { useAppDispatch, useAppSelector } from '../../hooks/app-hooks';
+import { closeMobileMenuOverlay } from './MobileModalOverlay/mobileMenuOverlaySlice';
 
 interface OverlayProps {
     children: React.ReactNode;
@@ -13,8 +9,12 @@ interface OverlayProps {
 
 const Overlay = ({ children }: OverlayProps) => {
     const dispatch = useAppDispatch();
-    const isMobileMenuOpen = useAppSelector(getMobileMenuOverlayState);
-    const isSearchMenuOpen = useAppSelector(getSearchMenuOverlayState);
+    const isMobileMenuOpen = useAppSelector(
+        (state) => state.mobileMenuOverlay.isMobileMenuOpen,
+    );
+    const isSearchMenuOpen = useAppSelector(
+        (state) => state.searchMenuOverlay.isSearchMenuOpen,
+    );
 
     useEffect(() => {
         const handleResize = () => {

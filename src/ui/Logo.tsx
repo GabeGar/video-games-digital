@@ -1,15 +1,15 @@
-import { useDispatch, useSelector } from 'react-redux';
 import { Link, useLocation } from 'react-router-dom';
-import {
-    closeMobileMenuOverlay,
-    getMobileMenuOverlayState,
-} from '../features/overlay/MobileModalOverlay/mobileMenuOverlaySlice';
+
+import { useAppDispatch, useAppSelector } from '../hooks/app-hooks';
+import { closeMobileMenuOverlay } from '../features/overlay/MobileModalOverlay/mobileMenuOverlaySlice';
 import { APP_PATHS } from '../common/paths';
 
 const Logo = () => {
     const location = useLocation();
-    const dispatch = useDispatch();
-    const isOpen = useSelector(getMobileMenuOverlayState);
+    const dispatch = useAppDispatch();
+    const isOpen = useAppSelector(
+        (state) => state.mobileMenuOverlay.isMobileMenuOpen,
+    );
 
     const handleCloseMobileMenuOverlay = () => {
         if (isOpen && location.pathname === APP_PATHS.BASE)
