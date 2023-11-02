@@ -5,7 +5,7 @@ import { APP_PATHS } from '../common/paths';
 import { useAppDispatch, useAppSelector } from '../hooks/app-hooks';
 import Logo from './Logo';
 import ShoppingCartIcon from './icons/ShoppingCartIcon';
-import HamburgerMenuIcon from './HamburgerMenuIcon';
+import HamburgerMenuIcon from './icons/HamburgerMenuIcon';
 import CommonLinks from './CommonLinks';
 import SearchMenuFormButton from '../features/overlay/SearchMenuOverlay/SearchMenuFormButton';
 
