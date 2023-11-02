@@ -2,7 +2,8 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 import { fetchGames, fetchGamesByGenre } from '../../services/apiRawg';
 import { GamesOverview } from '../../types/GamesInterface';
-import { generateRandomPrice } from '../../utils/generateRandomPrice';
+import { generatePriceById } from '../../utils/generatePriceById';
+import { priceRanges } from '../../common/customPriceRanges';
 
 interface RootState {
     games: GamesOverview[];
@@ -22,11 +23,11 @@ const storeSlice = createSlice({
     name: 'store',
     initialState,
     reducers: {
-        setRandomPrice(state) {
+        setGamePrice(state) {
             state.games = state.games.map((game) => {
                 return {
                     ...game,
-                    price: generateRandomPrice(),
+                    price: generatePriceById(game.id, priceRanges),
                 };
             });
         },
@@ -43,7 +44,7 @@ const storeSlice = createSlice({
             .addCase(fetchGames.fulfilled, (state, action) => {
                 state.status = 'idle';
                 state.games = action.payload.results;
-                storeSlice.caseReducers.setRandomPrice(state);
+                storeSlice.caseReducers.setGamePrice(state);
             })
             .addCase(fetchGames.rejected, (state, action) => {
                 state.status = 'fail';
@@ -57,7 +58,7 @@ const storeSlice = createSlice({
             .addCase(fetchGamesByGenre.fulfilled, (state, action) => {
                 state.status = 'idle';
                 state.games = action.payload.results;
-                storeSlice.caseReducers.setRandomPrice(state);
+                storeSlice.caseReducers.setGamePrice(state);
             })
             .addCase(fetchGamesByGenre.rejected, (state, action) => {
                 state.status = 'fail';
