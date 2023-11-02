@@ -2,8 +2,7 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 import { fetchGames, fetchGamesByGenre } from '../../services/apiRawg';
 import { GamesOverview } from '../../types/GamesInterface';
-import { generatePriceById } from '../../utils/generatePriceById';
-import { priceRanges } from '../../common/customPriceRanges';
+import { getPriceById } from '../../utils/generatePriceById';
 
 interface RootState {
     games: GamesOverview[];
@@ -27,7 +26,7 @@ const storeSlice = createSlice({
             state.games = state.games.map((game) => {
                 return {
                     ...game,
-                    price: generatePriceById(game.id, priceRanges),
+                    price: getPriceById(game.id),
                 };
             });
         },
