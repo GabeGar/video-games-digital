@@ -12,7 +12,7 @@ const Games = () => {
     if (status === 'fail') return <p>{error}</p>;
 
     return (
-        <section className="space-y-2 overflow-y-scroll">
+        <section className="space-y-2">
             <h1 className="text-3xl font-bold text-primary-purple">
                 {selectedGenre?.toUpperCase()}
             </h1>
