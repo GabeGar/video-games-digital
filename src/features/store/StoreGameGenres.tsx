@@ -5,12 +5,14 @@ import { fetchGames, fetchGamesByGenre } from '../../services/apiRawg';
 import { sortedGenresData } from '../../common/genresData';
 import { setSelectedGenre } from './storeSlice';
 
-const GameGenres = () => {
+const StoreGameGenres = () => {
     const dispatch = useAppDispatch();
     const currentGenre = useAppSelector((state) => state.store.selectedGenre);
 
     useEffect(() => {
+        // Defaults to top genre on page load
         void (async () => {
+            dispatch(setSelectedGenre('top'));
             await dispatch(fetchGames());
         })();
     }, [dispatch]);
@@ -59,4 +61,4 @@ const GameGenres = () => {
     );
 };
 
-export default GameGenres;
+export default StoreGameGenres;

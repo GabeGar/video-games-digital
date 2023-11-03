@@ -1,9 +1,10 @@
 import { Link } from 'react-router-dom';
 
+import { APP_PATHS } from '../../common/paths';
 import { useAppSelector } from '../../hooks/app-hooks';
 import Loader from '../../ui/Loader';
 
-const Games = () => {
+const StoreGames = () => {
     const { status, error, games, selectedGenre } = useAppSelector(
         (state) => state.store,
     );
@@ -22,7 +23,7 @@ const Games = () => {
 
                     return (
                         <li key={game.id} className="flex flex-col">
-                            <Link to="#">
+                            <Link to={`${APP_PATHS.STORE}/${game.slug}`}>
                                 <img
                                     className="max-h-[250px] min-h-[250px] w-full rounded-t-md"
                                     src={game.background_image}
@@ -48,4 +49,4 @@ const Games = () => {
     );
 };
 
-export default Games;
+export default StoreGames;
