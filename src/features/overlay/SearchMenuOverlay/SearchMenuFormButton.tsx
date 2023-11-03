@@ -12,7 +12,7 @@ import SearchIcon from '../../../ui/icons/SearchIcon';
 import close from '../../../assets/icon-close.svg';
 import SearchMenuGames from './SearchMenuGames';
 
-const BASE_INPUT_STYLES = `h-12 rounded-lg bg-slate-100 text-center text-[calc(.75rem+1dvw)] sm:text-xl font-semibold tracking-wide text-primary-purple outline-none transition-all duration-150 placeholder:px-10 placeholder:text-primary-purple/70 focus:bg-slate-50 focus:ring-2 focus:ring-primary-purple group-hover:outline-2 group-hover:outline-offset-0 group-hover:outline-primary-purple group-hover:placeholder:text-primary-purple/70 sm:block md:w-[30rem] lg:w-[35rem] xl:w-[50rem]`;
+const BASE_INPUT_STYLES = `h-12 rounded-lg bg-slate-100 text-center text-[calc(.75rem+1dvw)] sm:text-xl font-semibold tracking-wide text-primary-purple outline-none transition-all duration-150 placeholder:px-10 placeholder:text-primary-purple/70 focus:bg-slate-50 focus:ring-2 focus:ring-primary-purple group-hover:outline-2 group-hover:outline-offset-0 group-hover:outline-primary-purple group-hover:placeholder:text-primary-purple/70 sm:block lg:w-[35rem] xl:w-[50rem]`;
 
 const SearchMenuFormButton = () => {
     const dispatch = useAppDispatch();
@@ -72,7 +72,7 @@ const SearchMenuFormButton = () => {
                         <SearchIcon />
                     </button>
                     <input
-                        className={BASE_INPUT_STYLES}
+                        className={`${BASE_INPUT_STYLES} md:w-[30rem]`}
                         type="text"
                         name="Search"
                         placeholder="Search games"
