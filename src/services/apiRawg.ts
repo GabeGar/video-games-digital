@@ -41,3 +41,22 @@ export const fetchGamesByGenre = createAsyncThunk(
         }
     },
 );
+
+export const fetchGamesByQuery = createAsyncThunk(
+    'store/fetchGamesByQuery',
+    async (query: string) => {
+        try {
+            const response = await fetch(
+                `${BASE_API}/games?page_size=40&search=${query}&key=${API_KEY}`,
+            );
+
+            if (!response.ok)
+                throw new Error('Something went wrong getting the games.');
+
+            const data = (await response.json()) as GamesResults;
+            return data;
+        } catch (error) {
+            throw new Error((error as Error).message);
+        }
+    },
+);

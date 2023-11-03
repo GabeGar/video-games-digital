@@ -1,21 +1,45 @@
+import { useEffect } from 'react';
+
+import { useAppDispatch, useAppSelector } from '../../../hooks/app-hooks';
 import {
     closeSearchMenuOverlay,
     openSearchMenuOverlay,
+    resetSearchedGames,
+    setSearchQuery,
 } from './searchMenuOverlaySlice';
-
-import { useAppDispatch, useAppSelector } from '../../../hooks/app-hooks';
+import { fetchGamesByQuery } from '../../../services/apiRawg';
 import SearchIcon from '../../../ui/icons/SearchIcon';
 import close from '../../../assets/icon-close.svg';
 import SearchMenuGames from './SearchMenuGames';
 
-const BASE_INPUT_STYLES =
-    'h-12 rounded-lg bg-slate-100 text-center text-[calc(.75rem+1dvw)] sm:text-xl font-semibold tracking-wide text-primary-purple outline-none transition-all duration-150 placeholder:px-10 placeholder:text-primary-purple/70 focus:bg-slate-50 focus:ring-2 focus:ring-primary-purple group-hover:outline-2 group-hover:outline-offset-0 group-hover:outline-primary-purple group-hover:placeholder:text-primary-purple/70 sm:block lg:w-[35rem] xl:w-[50rem] sm:w-[15rem]';
+const BASE_INPUT_STYLES = `h-12 rounded-lg bg-slate-100 text-center text-[calc(.75rem+1dvw)] sm:text-xl font-semibold tracking-wide text-primary-purple outline-none transition-all duration-150 placeholder:px-10 placeholder:text-primary-purple/70 focus:bg-slate-50 focus:ring-2 focus:ring-primary-purple group-hover:outline-2 group-hover:outline-offset-0 group-hover:outline-primary-purple group-hover:placeholder:text-primary-purple/70 sm:block md:w-[30rem] lg:w-[35rem] xl:w-[50rem]`;
 
 const SearchMenuFormButton = () => {
     const dispatch = useAppDispatch();
-    const isSearchMenuOpen = useAppSelector(
-        (state) => state.searchMenuOverlay.isSearchMenuOpen,
+    const { isSearchMenuOpen, searchQuery } = useAppSelector(
+        (state) => state.searchMenuOverlay,
     );
+
+    useEffect(() => {
+        // Prevent accidental firing of the fetchGamesByQuery function on mount. SearchMenu MUST have isSearchMenuOpen state be true, in order for the intended effect to trigger.
+        if (!isSearchMenuOpen) return;
+
+        // Prevent premature firing of fetch query requests and clear any game results, fetched or otherwise.
+        if (searchQuery.length <= 2) {
+            dispatch(resetSearchedGames());
+            return;
+        }
+
+        const timer = setTimeout(() => {
+            void (async () => {
+                await dispatch(fetchGamesByQuery(searchQuery));
+            })();
+        }, 500);
+
+        return () => {
+            clearTimeout(timer);
+        };
+    }, [searchQuery, dispatch, isSearchMenuOpen]);
 
     const handleOpenSearchOverlayClick = () => {
         dispatch(openSearchMenuOverlay());
@@ -25,15 +49,20 @@ const SearchMenuFormButton = () => {
         dispatch(closeSearchMenuOverlay());
     };
 
+    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        dispatch(setSearchQuery(e.target.value));
+    };
+
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
+        return;
     };
 
     if (isSearchMenuOpen) {
         return (
             <>
                 <form
-                    className="group absolute left-1/2 top-32 -translate-x-1/2 transform"
+                    className="group absolute left-1/2 top-24 -translate-x-1/2 transform"
                     onSubmit={handleSubmit}
                 >
                     <button
@@ -47,6 +76,7 @@ const SearchMenuFormButton = () => {
                         type="text"
                         name="Search"
                         placeholder="Search games"
+                        onChange={handleInputChange}
                     />
                     <button
                         type="button"
@@ -75,7 +105,10 @@ const SearchMenuFormButton = () => {
                 <SearchIcon />
             </div>
             <input
-                className={`${BASE_INPUT_STYLES} hidden`}
+                className={`${BASE_INPUT_STYLES} ${
+                    // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
+                    isSearchMenuOpen ? '' : 'sm:w-[15rem]'
+                } hidden`}
                 type="text"
                 name="Search"
                 placeholder="Search games"

@@ -7,7 +7,6 @@ const Games = () => {
     const { status, error, games, selectedGenre } = useAppSelector(
         (state) => state.store,
     );
-    console.log(games);
 
     if (status === 'loading') return <Loader />;
     if (status === 'fail') return <p>{error}</p>;
