@@ -4,7 +4,7 @@ import { useAppDispatch, useAppSelector } from '../../../hooks/app-hooks';
 import {
     closeSearchMenuOverlay,
     openSearchMenuOverlay,
-    resetSearchedGames,
+    clearSearchedGames,
     setSearchQuery,
 } from './searchMenuOverlaySlice';
 import { fetchGamesByQuery } from '../../../services/apiRawg';
@@ -26,7 +26,7 @@ const SearchMenuFormButton = () => {
 
         // Prevent premature firing of fetch query requests and clear any game results, fetched or otherwise.
         if (searchQuery.length <= 2) {
-            dispatch(resetSearchedGames());
+            dispatch(clearSearchedGames());
             return;
         }
 

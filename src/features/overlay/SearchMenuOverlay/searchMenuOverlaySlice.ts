@@ -1,6 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { GamesOverview } from '../../../types/GamesInterface';
+
 import { fetchGamesByQuery } from '../../../services/apiRawg';
+import { GamesOverview } from '../../../types/GamesInterface';
 import { getPriceById } from '../../../utils/generatePriceById';
 
 interface RootState {
@@ -28,7 +29,7 @@ const searchMenuOverlaySlice = createSlice({
         },
         closeSearchMenuOverlay(state) {
             state.isSearchMenuOpen = false;
-            searchMenuOverlaySlice.caseReducers.resetSearchFields(state);
+            searchMenuOverlaySlice.caseReducers.resetSearch(state);
         },
         setSearchedGamesPricing(state) {
             state.games = state.games.map((game) => {
@@ -41,12 +42,12 @@ const searchMenuOverlaySlice = createSlice({
         setSearchQuery(state, action: PayloadAction<string>) {
             state.searchQuery = action.payload;
         },
-        resetSearchedGames(state) {
+        clearSearchedGames(state) {
             state.games = [];
         },
-        resetSearchFields(state) {
-            state.games = [];
+        resetSearch(state) {
             state.searchQuery = '';
+            searchMenuOverlaySlice.caseReducers.clearSearchedGames(state);
         },
     },
     extraReducers: (builder) => {
@@ -73,6 +74,6 @@ export const {
     openSearchMenuOverlay,
     closeSearchMenuOverlay,
     setSearchQuery,
-    resetSearchedGames,
-    resetSearchFields,
+    clearSearchedGames,
+    resetSearch,
 } = searchMenuOverlaySlice.actions;
