@@ -1,6 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
-import { GamesResults } from '../types/GamesInterface';
+import { Game, GamesResults } from '../types/GamesInterface';
 import { ImportMetaEnv } from '../vite-env';
 
 const BASE_API = import.meta.env
@@ -54,6 +54,25 @@ export const fetchGamesByQuery = createAsyncThunk(
                 throw new Error('Something went wrong getting the games.');
 
             const data = (await response.json()) as GamesResults;
+            return data;
+        } catch (error) {
+            throw new Error((error as Error).message);
+        }
+    },
+);
+
+export const fetchGameBySlug = createAsyncThunk(
+    'store/fetchGameBySlug',
+    async (slug: string) => {
+        try {
+            const response = await fetch(
+                `${BASE_API}/games/${slug}?key=${API_KEY}`,
+            );
+
+            if (!response.ok)
+                throw new Error('Something went wrong getting the game.');
+
+            const data = (await response.json()) as Game;
             return data;
         } catch (error) {
             throw new Error((error as Error).message);
