@@ -13,12 +13,12 @@ const StoreGameGenres = () => {
         // 'top' is NOT an actual genre. Only fetch genres that are not top with the following dispatch, else use the default.
         if (currentGenre !== 'top') {
             void (async () => {
-                dispatch(setSelectedGenre(currentGenre));
                 await dispatch(fetchGamesByGenre(currentGenre));
             })();
-        } else {
+        }
+
+        if (currentGenre === 'top') {
             void (async () => {
-                dispatch(setSelectedGenre('top'));
                 await dispatch(fetchGames());
             })();
         }
@@ -28,20 +28,7 @@ const StoreGameGenres = () => {
         // prevent a wasteful re-fetch of the currently displayed games genre.
         if (currentGenre === genre) return;
 
-        // 'top' as a genre does not actually exist in the rawg api.
-        // Must re-fetch using the fetchGames func.
-        if (genre === 'top') {
-            void (async () => {
-                dispatch(setSelectedGenre(genre));
-                await dispatch(fetchGames());
-            })();
-            return;
-        }
-
-        void (async () => {
-            dispatch(setSelectedGenre(genre));
-            await dispatch(fetchGamesByGenre(genre));
-        })();
+        dispatch(setSelectedGenre(genre));
     };
 
     return (
