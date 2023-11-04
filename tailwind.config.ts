@@ -23,6 +23,7 @@ export default {
             gridTemplateColumns: {
                 gamesGrid: 'repeat(auto-fit, minmax(300px, 1fr))',
                 storeLayoutGrid: '1fr 4fr',
+                storeItemGrid: '2fr 1fr',
             },
         },
     },
