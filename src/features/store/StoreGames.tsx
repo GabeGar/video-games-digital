@@ -22,7 +22,10 @@ const StoreGames = () => {
                     if (!game.background_image) return;
 
                     return (
-                        <li key={game.id} className="flex flex-col">
+                        <li
+                            key={game.id}
+                            className="flex flex-col transition-transform hover:scale-105"
+                        >
                             <Link to={`${APP_PATHS.STORE}/${game.slug}`}>
                                 <img
                                     className="max-h-[250px] min-h-[250px] w-full rounded-t-md"
