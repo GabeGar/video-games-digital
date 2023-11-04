@@ -9,7 +9,6 @@ import ShoppingBagIcon from './icons/ShoppingBagIcon';
 import AboutIcon from './icons/AboutIcon';
 import CareersIcon from './icons/CareersIcon';
 import ContactUsIcon from './icons/ContactUsIcon';
-import { fetchGames } from '../services/apiRawg';
 
 const CommonLinks = () => {
     const dispatch = useAppDispatch();
@@ -23,10 +22,6 @@ const CommonLinks = () => {
         if (isMobileMenuOverlayOpen) {
             dispatch(closeMobileMenuOverlay());
         }
-
-        void (async () => {
-            await dispatch(fetchGames());
-        })();
     };
 
     const handleCloseOverlay = () => {
