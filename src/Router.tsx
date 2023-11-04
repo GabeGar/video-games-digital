@@ -1,9 +1,10 @@
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 
 import { APP_PATHS } from './common/paths';
-import StoreLayout from './features/store/StoreLayout';
+import StoreLayout from './ui/StoreLayout';
 import AppLayout from './ui/AppLayout';
 import Home from './ui/Home';
+import StoreGameItem from './features/store/StoreGameItem';
 
 const Router = (): React.ReactElement => {
     const router = createBrowserRouter([
@@ -18,6 +19,10 @@ const Router = (): React.ReactElement => {
                 {
                     path: APP_PATHS.STORE,
                     element: <StoreLayout />,
+                },
+                {
+                    path: APP_PATHS.STORE_ITEM,
+                    element: <StoreGameItem />,
                 },
             ],
         },
