@@ -57,7 +57,15 @@ const searchMenuOverlaySlice = createSlice({
             })
             .addCase(fetchGamesByQuery.fulfilled, (state, action) => {
                 state.status = 'idle';
-                state.games = action.payload.results;
+                state.games = action.payload.results.map((game) => {
+                    return {
+                        id: game.id,
+                        slug: game.slug,
+                        name: game.name,
+                        price: game.price,
+                        background_image: game.background_image,
+                    };
+                });
                 searchMenuOverlaySlice.caseReducers.setSearchedGamesPricing(
                     state,
                 );

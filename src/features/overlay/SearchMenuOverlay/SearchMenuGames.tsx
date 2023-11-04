@@ -1,10 +1,13 @@
 import { Link } from 'react-router-dom';
 
 import { APP_PATHS } from '../../../common/paths';
-import { useAppSelector } from '../../../hooks/app-hooks';
+import { useAppDispatch, useAppSelector } from '../../../hooks/app-hooks';
 import SmallLoader from '../../../ui/SmallLoader';
+import { closeSearchMenuOverlay } from './searchMenuOverlaySlice';
 
 const SearchMenuGames = () => {
+    const dispatch = useAppDispatch();
+
     const {
         status,
         error,
@@ -12,6 +15,10 @@ const SearchMenuGames = () => {
     } = useAppSelector((state) => state.searchMenuOverlay);
 
     const hasSearchedGames = searchedGames.length !== 0;
+
+    const handleCloseSearchOverlay = () => {
+        dispatch(closeSearchMenuOverlay());
+    };
 
     if (status === 'loading') return <SmallLoader />;
     if (status === 'fail') return <p>{error}</p>;
@@ -28,6 +35,7 @@ const SearchMenuGames = () => {
                                 <Link
                                     className=""
                                     to={`${APP_PATHS.STORE}/${game.slug}`}
+                                    onClick={handleCloseSearchOverlay}
                                 >
                                     <div className="flex flex-wrap items-center gap-2">
                                         <img
