@@ -11,7 +11,7 @@ import { getPriceById } from '../../utils/generatePriceById';
 interface RootState {
     game: Game | null;
     games: GamesOverview[];
-    selectedGenre: string | null;
+    selectedGenre: string;
     status: 'idle' | 'loading' | 'fail';
     error: string | null;
 }

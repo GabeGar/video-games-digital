@@ -10,12 +10,19 @@ const StoreGameGenres = () => {
     const currentGenre = useAppSelector((state) => state.store.selectedGenre);
 
     useEffect(() => {
-        // Defaults to top genre on page load
-        void (async () => {
-            dispatch(setSelectedGenre('top'));
-            await dispatch(fetchGames());
-        })();
-    }, [dispatch]);
+        // 'top' is NOT an actual genre. Only fetch genres that are not top with the following dispatch, else use the default.
+        if (currentGenre !== 'top') {
+            void (async () => {
+                dispatch(setSelectedGenre(currentGenre));
+                await dispatch(fetchGamesByGenre(currentGenre));
+            })();
+        } else {
+            void (async () => {
+                dispatch(setSelectedGenre('top'));
+                await dispatch(fetchGames());
+            })();
+        }
+    }, [dispatch, currentGenre]);
 
     const handleGenreClick = (genre: string) => {
         // prevent a wasteful re-fetch of the currently displayed games genre.
