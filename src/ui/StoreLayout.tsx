@@ -1,5 +1,5 @@
-import Games from './StoreGames';
-import GameGenres from './StoreGameGenres';
+import Games from '../features/store/StoreGames';
+import GameGenres from '../features/store/StoreGameGenres';
 
 const StoreLayout = () => {
     return (
