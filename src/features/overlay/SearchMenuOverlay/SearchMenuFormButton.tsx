@@ -11,6 +11,7 @@ import { fetchGamesByQuery } from '../../../services/apiRawg';
 import SearchIcon from '../../../ui/icons/SearchIcon';
 import close from '../../../assets/icon-close.svg';
 import SearchMenuGames from './SearchMenuGames';
+import useEscKey from '../../../hooks/useEscKey';
 
 const BASE_INPUT_STYLES = `h-12 rounded-lg bg-slate-100 text-center text-[calc(.75rem+1dvw)] sm:text-xl font-semibold tracking-wide text-primary-purple outline-none transition-all duration-150 placeholder:px-10 placeholder:text-primary-purple/70 focus:bg-slate-50 focus:ring-2 focus:ring-primary-purple group-hover:outline-2 group-hover:outline-offset-0 group-hover:outline-primary-purple group-hover:placeholder:text-primary-purple/70 sm:block lg:w-[35rem] xl:w-[50rem]`;
 
@@ -46,6 +47,10 @@ const SearchMenuFormButton = () => {
             clearTimeout(timer);
         };
     }, [searchQuery, dispatch, isSearchMenuOpen]);
+
+    useEscKey(() => {
+        if (isSearchMenuOpen) handleCloseSearchMenuOverlay();
+    });
 
     const handleOpenSearchOverlayClick = () => {
         dispatch(openSearchMenuOverlay());

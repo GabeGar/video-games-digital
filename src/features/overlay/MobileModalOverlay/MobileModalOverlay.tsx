@@ -8,6 +8,7 @@ import close from '../../../assets/icon-close.svg';
 import Logo from '../../../ui/Logo';
 
 import CommonLinks from '../../../ui/CommonLinks';
+import useEscKey from '../../../hooks/useEscKey';
 
 const MobileModal = () => {
     const dispatch = useAppDispatch();
@@ -15,6 +16,10 @@ const MobileModal = () => {
     const handleCloseMobileMenuOverlay = () => {
         dispatch(closeMobileMenuOverlay());
     };
+
+    useEscKey(() => {
+        handleCloseMobileMenuOverlay();
+    });
 
     return (
         <Overlay>
