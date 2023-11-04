@@ -48,3 +48,5 @@ export interface GamesOverview {
 export interface GamesResults {
     results: GamesOverview[];
 }
+
+export type GameType = Game | GamesOverview;

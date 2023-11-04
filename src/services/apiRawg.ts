@@ -1,6 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
-import { Game, GamesResults } from '../types/GamesInterface';
+import { Game, GamesResults } from '../types/gamesInterfaceAndType';
 import { ImportMetaEnv } from '../vite-env';
 
 const BASE_API = import.meta.env

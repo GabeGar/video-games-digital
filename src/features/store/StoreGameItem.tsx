@@ -6,11 +6,15 @@ import { useAppDispatch, useAppSelector } from '../../hooks/app-hooks';
 import { fetchGameBySlug } from '../../services/apiRawg';
 import Loader from '../../ui/Loader';
 import githubIcon from '../../assets/github-mark-white.svg';
+import { GameType } from '../../types/gamesInterfaceAndType';
+import { addToCart, removeFromCart } from '../cart/cartSlice';
 
 const StoreGameItem = () => {
+    const dispatch = useAppDispatch();
     const { game_slug } = useParams();
     const { status, error, game } = useAppSelector((state) => state.store);
-    const dispatch = useAppDispatch();
+    const cartItems = useAppSelector((state) => state.cart.cartItems);
+    const isInCart = cartItems.find((item) => item.id === game?.id);
 
     useEffect(() => {
         if (game_slug) {
@@ -19,6 +23,17 @@ const StoreGameItem = () => {
             })();
         }
     }, [game_slug, dispatch]);
+
+    const handleAddToCart = (game: GameType | null) => {
+        if (game) {
+            dispatch(addToCart(game));
+        }
+    };
+    const handleRemoveFromCart = (game: GameType | null) => {
+        if (game) {
+            dispatch(removeFromCart(game));
+        }
+    };
 
     if (status === 'loading') return <Loader />;
     if (status === 'fail') return <p>{error}</p>;
@@ -67,7 +82,7 @@ const StoreGameItem = () => {
             : 'Unknown';
 
     return (
-        <div className="md:grid-cols-storeItemGrid grid-rows-1 px-3 pt-2 md:grid md:min-h-[80dvh]">
+        <div className="grid-rows-1 px-3 pt-2 md:grid md:min-h-[80dvh] md:grid-cols-storeItemGrid">
             <section className="flex items-center justify-between text-primary-purple md:hidden">
                 <Link className="text-lg font-semibold" to={APP_PATHS.STORE}>
                     🔙 Go Back
@@ -94,10 +109,32 @@ const StoreGameItem = () => {
                     </h1>
                 </section>
                 <section>
-                    <button className="mt-2 flex w-full justify-between rounded-md bg-primary-purple p-3 text-lg font-bold text-slate-100">
-                        <span>Add to Cart</span>
-                        <span className="text-lg">{gamePrice}</span>
-                    </button>
+                    {isInCart ? (
+                        <>
+                            <div className="mt-2 font-bold text-primary-purple">
+                                In Cart ☑
+                            </div>
+                            <button
+                                className="flex w-full justify-between rounded-md bg-primary-purple p-3 text-lg font-bold text-slate-100"
+                                onClick={() => {
+                                    handleRemoveFromCart(game);
+                                }}
+                            >
+                                <span>Remove from Cart</span>
+                                <span className="text-lg">{gamePrice}</span>
+                            </button>
+                        </>
+                    ) : (
+                        <button
+                            className="mt-2 flex w-full justify-between rounded-md bg-primary-purple p-3 text-lg font-bold text-slate-100"
+                            onClick={() => {
+                                handleAddToCart(game);
+                            }}
+                        >
+                            <span>Add to Cart</span>
+                            <span className="text-lg">{gamePrice}</span>
+                        </button>
+                    )}
                 </section>
                 <section className="font mt-2 max-w-max rounded-md border-2 border-primary-purple bg-primary-purple px-2 font-semibold tracking-wide text-slate-100">
                     <p>

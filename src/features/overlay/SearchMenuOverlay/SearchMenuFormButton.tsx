@@ -8,6 +8,7 @@ import {
     setSearchQuery,
 } from './searchMenuOverlaySlice';
 import { fetchGamesByQuery } from '../../../services/apiRawg';
+
 import SearchIcon from '../../../ui/icons/SearchIcon';
 import close from '../../../assets/icon-close.svg';
 import SearchMenuGames from './SearchMenuGames';

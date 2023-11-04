@@ -16,6 +16,9 @@ export default {
                 'primary-light-purple':
                     'hsl(var(--primary-light-purple) /<alpha-value>)',
             },
+            boxShadow: {
+                storeGames: '0 2px 2px 2px rgba(0, 0, 0, 0.3)',
+            },
             backgroundImage: {
                 heroDesktop: 'url("/src/assets/gamer-zone-desktop.png")',
                 heroMobile: 'url("/src/assets/gamer-zone-mobile.png")',

@@ -2,6 +2,7 @@ import { Outlet, useLocation } from 'react-router-dom';
 
 import { useAppSelector } from '../hooks/app-hooks';
 import { APP_PATHS } from '../common/paths';
+
 import Header from './Header';
 import Footer from './Footer';
 import MobileModalOverlay from '../features/overlay/MobileModalOverlay/MobileModalOverlay';

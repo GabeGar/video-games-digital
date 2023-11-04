@@ -5,6 +5,7 @@ import StoreLayout from './ui/StoreLayout';
 import AppLayout from './ui/AppLayout';
 import Home from './ui/Home';
 import StoreGameItem from './features/store/StoreGameItem';
+import Cart from './features/cart/Cart';
 
 const Router = (): React.ReactElement => {
     const router = createBrowserRouter([
@@ -23,6 +24,10 @@ const Router = (): React.ReactElement => {
                 {
                     path: APP_PATHS.STORE_ITEM,
                     element: <StoreGameItem />,
+                },
+                {
+                    path: APP_PATHS.CART,
+                    element: <Cart />,
                 },
             ],
         },

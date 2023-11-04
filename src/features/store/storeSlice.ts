@@ -5,7 +5,7 @@ import {
     fetchGames,
     fetchGamesByGenre,
 } from '../../services/apiRawg';
-import { Game, GamesOverview } from '../../types/GamesInterface';
+import { Game, GamesOverview } from '../../types/gamesInterfaceAndType';
 import { getPriceById } from '../../utils/generatePriceById';
 
 interface RootState {

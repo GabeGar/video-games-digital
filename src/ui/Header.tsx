@@ -15,6 +15,9 @@ const Header = () => {
     const isSearchMenuOpen = useAppSelector(
         (state) => state.searchMenuOverlay.isSearchMenuOpen,
     );
+    const hasItemsInCart = useAppSelector(
+        (state) => state.cart.cartItems.length > 0,
+    );
 
     const handleOpenMobileMenuOverlayClick = () => {
         dispatch(openMobileMenuOverlay());
@@ -36,10 +39,13 @@ const Header = () => {
 
                     {!isOnBaseURL && (
                         <Link
-                            className="group ml-1 mr-2 transition-all hover:scale-110"
+                            className="group relative ml-1 mr-2 transition-all hover:scale-110"
                             to={APP_PATHS.CART}
                         >
                             <ShoppingCartIcon />
+                            {hasItemsInCart && (
+                                <div className="absolute right-[-.1rem] top-0 h-2 w-2 rounded-full bg-primary-purple"></div>
+                            )}
                         </Link>
                     )}
 

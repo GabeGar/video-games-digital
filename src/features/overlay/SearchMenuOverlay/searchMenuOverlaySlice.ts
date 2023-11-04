@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 import { fetchGamesByQuery } from '../../../services/apiRawg';
-import { GamesOverview } from '../../../types/GamesInterface';
+import { GamesOverview } from '../../../types/gamesInterfaceAndType';
 import { getPriceById } from '../../../utils/generatePriceById';
 
 interface RootState {
