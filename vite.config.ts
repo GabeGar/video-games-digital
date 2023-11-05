@@ -6,7 +6,6 @@ import tailwindcss from 'tailwindcss';
 
 // https://vitejs.dev/config/
 export default defineConfig({
-    base: '/video-games-digital',
     plugins: [react()],
     css: {
         postcss: {
