@@ -38,7 +38,7 @@ Users should be able to:
 ### Links
 
 -   Solution URL: [Github](https://github.com/GabeGar/video-games-digital)
--   Live Site URL: [Gh-pages](https://gabegar.github.io/video-games-digital)
+-   Live Site URL: [Gh-pages](https://video-games-digital.vercel.app/store)
 
 ## My process
 
@@ -49,6 +49,7 @@ Users should be able to:
 -   [Redux-TK](https://redux-toolkit.js.org/)
 -   [TypeScript](https://www.typescriptlang.org/)
 -   [RAWG](https://rawg.io/apidocs) - Api
+-   [Tailwind](https://tailwindcss.com/) - CSS framework
 -   FlexBox
 -   CSS Grid
 -   Mobile-first workflow
