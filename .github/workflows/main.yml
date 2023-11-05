@@ -56,4 +56,7 @@ jobs:
 
             - name: Deploy to GitHub Pages
               id: deployment
+              env:
+                  VITE_AUTH_KEY: ${{ secrets.VITE_AUTH_KEY }}
+                  VITE_RAWG_ENDPOINT: ${{ secrets.VITE_RAWG_ENDPOINT }}
               uses: actions/deploy-pages@v1
