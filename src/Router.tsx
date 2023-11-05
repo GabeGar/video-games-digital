@@ -6,6 +6,7 @@ import AppLayout from './ui/AppLayout';
 import Home from './ui/Home';
 import StoreGameItem from './features/store/StoreGameItem';
 import Cart from './features/cart/Cart';
+import PageNotFound from './ui/PageNotFound';
 
 const Router = (): React.ReactElement => {
     const router = createBrowserRouter([
@@ -30,6 +31,10 @@ const Router = (): React.ReactElement => {
                     element: <Cart />,
                 },
             ],
+        },
+        {
+            path: '*',
+            element: <PageNotFound />,
         },
     ]);
 
