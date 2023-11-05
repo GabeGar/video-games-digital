@@ -85,7 +85,7 @@ const StoreGameItem = () => {
         <div className="grid-rows-1 px-3 pt-2 md:grid md:min-h-[80dvh] md:grid-cols-storeItemGrid">
             <section className="flex items-center justify-between text-primary-purple md:hidden">
                 <Link className="text-lg font-semibold" to={APP_PATHS.STORE}>
-                    🔙 Go Back
+                    🔙 Continue Shopping
                 </Link>
                 <h1 className="text-center text-2xl font-bold">{gameName}</h1>
             </section>
@@ -102,7 +102,7 @@ const StoreGameItem = () => {
                         className="text-lg font-semibold"
                         to={APP_PATHS.STORE}
                     >
-                        🔙 Go Back
+                        🔙 Continue Shopping
                     </Link>
                     <h1 className="text-center text-2xl font-bold">
                         {gameName}

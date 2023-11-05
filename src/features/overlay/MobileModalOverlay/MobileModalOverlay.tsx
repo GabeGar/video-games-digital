@@ -1,4 +1,5 @@
 import { createPortal } from 'react-dom';
+import { motion as m } from 'framer-motion';
 
 import { closeMobileMenuOverlay } from './mobileMenuOverlaySlice';
 import { useAppDispatch } from '../../../hooks/app-hooks';
@@ -23,7 +24,13 @@ const MobileModal = () => {
 
     return (
         <Overlay>
-            <div className="flex min-h-min flex-1 flex-col bg-slate-100 px-4 py-6 uppercase">
+            <m.div
+                initial={{ x: 400 }}
+                animate={{ x: -0 }}
+                exit={{ x: 400 }}
+                transition={{ type: 'spring', duration: 0.35 }}
+                className="flex min-h-min flex-1 flex-col bg-slate-100 px-4 py-6 uppercase"
+            >
                 <div className="flex justify-between pb-6">
                     <Logo />
                     <button
@@ -42,7 +49,7 @@ const MobileModal = () => {
                         <CommonLinks />
                     </ul>
                 </nav>
-            </div>
+            </m.div>
         </Overlay>
     );
 };

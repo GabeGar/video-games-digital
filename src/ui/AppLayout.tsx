@@ -7,6 +7,7 @@ import Header from './Header';
 import Footer from './Footer';
 import MobileModalOverlay from '../features/overlay/MobileModalOverlay/MobileModalOverlay';
 import SearchModalOverlay from '../features/overlay/SearchMenuOverlay/SearchModalOverlay';
+import { AnimatePresence } from 'framer-motion';
 
 const AppLayout = () => {
     const location = useLocation();
@@ -19,8 +20,14 @@ const AppLayout = () => {
 
     return (
         <>
-            {isSearchMenuOpen && <SearchModalOverlay />}
-            {isMobileMenuOpen && <MobileModalOverlay />}
+            <AnimatePresence>
+                {isSearchMenuOpen && (
+                    <SearchModalOverlay key="search-overlay" />
+                )}
+                {isMobileMenuOpen && (
+                    <MobileModalOverlay key="mobile-overlay" />
+                )}
+            </AnimatePresence>
 
             <div className="min-h-[100dvh] bg-slate-100">
                 <Header />

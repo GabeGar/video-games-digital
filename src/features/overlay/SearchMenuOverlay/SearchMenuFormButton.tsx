@@ -1,4 +1,5 @@
 import { useEffect, useRef } from 'react';
+import { motion as m } from 'framer-motion';
 
 import { useAppDispatch, useAppSelector } from '../../../hooks/app-hooks';
 import {
@@ -73,8 +74,19 @@ const SearchMenuFormButton = () => {
     if (isSearchMenuOpen) {
         return (
             <>
-                <form
-                    className="group absolute left-1/2 top-24 -translate-x-1/2 transform"
+                <m.form
+                    initial={{
+                        top: '0rem',
+                        left: '50%',
+                        translateX: '-50%',
+                    }}
+                    animate={{
+                        top: '6rem',
+                        left: '50%',
+                        translateX: '-50%',
+                    }}
+                    transition={{ type: 'spring', duration: 0.5 }}
+                    className="group absolute"
                     onSubmit={handleSubmit}
                 >
                     <button
@@ -102,7 +114,7 @@ const SearchMenuFormButton = () => {
                             alt="Close menu icon"
                         />
                     </button>
-                </form>
+                </m.form>
 
                 <SearchMenuGames />
             </>

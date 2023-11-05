@@ -93,14 +93,13 @@ const Cart = () => {
                 </>
             ) : (
                 <section>
-                    <p className="flex h-[50dvh] flex-col items-center justify-center text-2xl">
+                    <p className="flex h-[50dvh] flex-col items-center justify-center text-2xl font-medium text-primary-purple">
                         <span> 🤔 Your Cart is Empty 🤔</span>
-                        <span>Start Your Shopping now.</span>
                         <Link
                             to={APP_PATHS.STORE}
-                            className="mt-2 text-2xl font-semibold text-primary-purple"
+                            className="mt-2 text-2xl font-bold"
                         >
-                            🔙 Back To Store
+                            🔙 Continue Shopping
                         </Link>
                     </p>
                 </section>
