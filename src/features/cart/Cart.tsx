@@ -36,7 +36,7 @@ const Cart = () => {
             )}
             {hasItems ? (
                 <>
-                    <section className="max-h-[80dvh] divide-y-2 divide-primary-purple overflow-y-auto md:min-w-[40rem]">
+                    <section className="max-h-[70dvh] divide-y-2 divide-primary-purple overflow-y-auto md:min-w-[40rem]">
                         <ul className="flex flex-col divide-y-2 divide-primary-purple">
                             {cartItems.map((gameItem) => {
                                 return (
@@ -76,7 +76,7 @@ const Cart = () => {
                             })}
                         </ul>
                     </section>
-                    <div className="flex items-center justify-between pt-2 text-2xl text-primary-purple md:min-w-[40rem]">
+                    <div className="flex items-center justify-between py-6 text-2xl text-primary-purple md:min-w-[40rem]">
                         <button
                             className="rounded-md bg-primary-purple px-2 py-1 font-bold text-slate-100 transition-transform hover:scale-105"
                             onClick={handleCheckOut}
