@@ -4,10 +4,12 @@ import { APP_PATHS } from '../../common/paths';
 import { formatCurrency } from '../../utils/formatCurrency';
 import { clearCart, removeFromCart } from './cartSlice';
 import { GameType } from '../../types/gamesInterfaceAndType';
+import { useNotification } from '../../hooks/useNotification';
 
 const Cart = () => {
     const dispatch = useAppDispatch();
     const cartItems = useAppSelector((state) => state.cart.cartItems);
+    const { removed, cartCleared } = useNotification();
     const hasItems = cartItems.length > 0;
     const total = cartItems.reduce((acc, game) => {
         return acc + game.price;
@@ -15,10 +17,12 @@ const Cart = () => {
     const totalFormatted = formatCurrency(total);
 
     const handleCheckOut = () => {
+        cartCleared();
         dispatch(clearCart());
     };
 
     const handleRemoveFromCart = (game: GameType) => {
+        removed(game.name);
         dispatch(removeFromCart(game));
     };
 

@@ -8,11 +8,13 @@ import Loader from '../../ui/Loader';
 import githubIcon from '../../assets/github-mark-white.svg';
 import { GameType } from '../../types/gamesInterfaceAndType';
 import { addToCart, removeFromCart } from '../cart/cartSlice';
+import { useNotification } from '../../hooks/useNotification';
 
 const StoreGameItem = () => {
     const dispatch = useAppDispatch();
     const { game_slug } = useParams();
     const { status, error, game } = useAppSelector((state) => state.store);
+    const { added, removed } = useNotification();
     const cartItems = useAppSelector((state) => state.cart.cartItems);
     const isInCart = cartItems.find((item) => item.id === game?.id);
 
@@ -26,11 +28,14 @@ const StoreGameItem = () => {
 
     const handleAddToCart = (game: GameType | null) => {
         if (game) {
+            added(game.name);
             dispatch(addToCart(game));
         }
     };
+
     const handleRemoveFromCart = (game: GameType | null) => {
         if (game) {
+            removed(game.name);
             dispatch(removeFromCart(game));
         }
     };

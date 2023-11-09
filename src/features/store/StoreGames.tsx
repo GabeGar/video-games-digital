@@ -6,6 +6,7 @@ import { GameType } from '../../types/gamesInterfaceAndType';
 import { addToCart, removeFromCart } from '../cart/cartSlice';
 
 import Loader from '../../ui/Loader';
+import { useNotification } from '../../hooks/useNotification';
 
 const StoreGames = () => {
     const dispatch = useAppDispatch();
@@ -13,12 +14,15 @@ const StoreGames = () => {
         (state) => state.store,
     );
     const cartItems = useAppSelector((state) => state.cart.cartItems);
+    const { added, removed } = useNotification();
 
     const handleAddToCart = (game: GameType) => {
+        added(game.name);
         dispatch(addToCart(game));
     };
 
     const handleRemoveFromCart = (game: GameType) => {
+        removed(game.name);
         dispatch(removeFromCart(game));
     };
 
