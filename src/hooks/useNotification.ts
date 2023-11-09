@@ -12,9 +12,7 @@ export const useNotification = () => {
     };
 
     const cartCleared = () => {
-        toast.success(
-            'Your cart has been cleared - this is not a real store 😱',
-        );
+        toast.success('Your cart has been cleared - not a real store 😱!');
     };
 
     return { added, removed, cartCleared };
